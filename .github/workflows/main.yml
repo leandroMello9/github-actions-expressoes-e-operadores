@@ -1,0 +1,32 @@
+name: Workflow Expressoes e operadores lógicos
+on:
+
+  workflow_dispatch:
+    inputs:
+      valor_numerico:
+        type: number
+        description: "Valor numérico para teste"
+        default: 20
+      valor_string:
+        type: string
+        description: "Valor string para teste"
+        default: "Valor XPTO"
+      valor_booleano:
+        type: boolean
+        description: "Valor booleano para teste"
+        default: true
+jobs:
+  teste:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+      - name: Operação com String
+        run: |
+          echo "${{ github.actor == inputs.valor_string }}"
+      - name: Operação com Número
+        run: |
+          echo "${{ inputs.valor_numerico > 20 }}"
+      - name: Operação com Booleano
+        run: |
+          echo "${{ !inputs.valor_booleano }}"
+    
